@@ -1,0 +1,142 @@
+{
+  "info": {
+    "_postman_id": "242b9501-5d02-4ebb-b831-87329f7108cd",
+    "name": "Reqres API test",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "46302151",
+    "_collection_link": "https://go.postman.co/collection/46302151-242b9501-5d02-4ebb-b831-87329f7108cd?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Endpoint GET",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "// Validasi Status Code\r\npm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\n// Looping validasi tiap object dalam array data\r\npm.test(\"Validate each user in array has id, email, first_name\", function () {\r\n    var jsonData = pm.response.json();\r\n    jsonData.data.forEach(function(user) {\r\n        pm.expect(user).to.have.property('id');\r\n        pm.expect(user).to.have.property('email');\r\n        pm.expect(user).to.have.property('first_name');\r\n\r\n        // Conditional (if-else) untuk field opsional (avatar)\r\n        if (user.avatar) {\r\n            pm.expect(user.avatar).to.be.a('string');\r\n        } else {\r\n            pm.expect(user.avatar).to.be.null;\r\n        }\r\n    });\r\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/users?page=2",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "users"
+          ],
+          "query": [
+            {
+              "key": "page",
+              "value": "2"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Endpoint POST",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "// Validasi Status Code\r\npm.test(\"Status code is 201\", function () {\r\n    pm.response.to.have.status(201);\r\n});\r\n\r\n// Looping validasi tiap object dalam array data\r\npm.test(\"Validate each user in array has id, email, first_name\", function () {\r\n    var jsonData = pm.response.json();\r\n    jsonData.data.forEach(function(user) {\r\n        pm.expect(user).to.have.property('id');\r\n        pm.expect(user).to.have.property('email');\r\n        pm.expect(user).to.have.property('first_name');\r\n\r\n        // Conditional (if-else) untuk field opsional (avatar)\r\n        if (user.avatar) {\r\n            pm.expect(user.avatar).to.be.a('string');\r\n        } else {\r\n            pm.expect(user.avatar).to.be.null;\r\n        }\r\n    });\r\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"morpheus\",\r\n  \"job\": \"leader\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/api/users",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "users"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "New Request",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "// Validasi Status Code\r\npm.test(\"Status code is 204\", function () {\r\n    pm.response.to.have.status(204);\r\n});\r\n\r\n// Looping validasi tiap object dalam array data\r\npm.test(\"Validate each user in array has id, email, first_name\", function () {\r\n    var jsonData = pm.response.json();\r\n    jsonData.data.forEach(function(user) {\r\n        pm.expect(user).to.have.property('id');\r\n        pm.expect(user).to.have.property('email');\r\n        pm.expect(user).to.have.property('first_name');\r\n\r\n        // Conditional (if-else) untuk field opsional (avatar)\r\n        if (user.avatar) {\r\n            pm.expect(user.avatar).to.be.a('string');\r\n        } else {\r\n            pm.expect(user.avatar).to.be.null;\r\n        }\r\n    });\r\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/users/2",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "users",
+            "2"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Endpoint Put",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"morpheus\",\r\n  \"job\": \"zion resident\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/api/users/2",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "users",
+            "2"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
